@@ -8,9 +8,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { weeklyYield } from "../data/mockData";
+import { useFarm } from "../context/FarmContext";
 
 export function YieldChart() {
+  const { weeklyYield } = useFarm();
   return (
     <div className="rounded-xl border border-white/5 bg-[#1a231c] p-5">
       <h3 className="font-medium text-white">Prediksi Hasil Panen (kg)</h3>

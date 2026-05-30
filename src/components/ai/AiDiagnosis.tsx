@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Microscope, Loader2, CheckCircle2 } from "lucide-react";
+import { apiDiagnose, checkApiHealth } from "../../api/client";
 import { diagnoseFromSymptoms, type DiagnosisResult } from "../../services/aiService";
 
 const SYMPTOM_EXAMPLES = [
@@ -14,14 +15,19 @@ export function AiDiagnosis() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DiagnosisResult | null>(null);
 
-  function runDiagnosis() {
+  async function runDiagnosis() {
     if (!symptoms.trim()) return;
     setLoading(true);
     setResult(null);
-    setTimeout(() => {
-      setResult(diagnoseFromSymptoms(symptoms));
+    try {
+      const useApi = await checkApiHealth();
+      const data = useApi
+        ? ((await apiDiagnose(symptoms)) as DiagnosisResult)
+        : diagnoseFromSymptoms(symptoms);
+      setResult(data);
+    } finally {
       setLoading(false);
-    }, 900);
+    }
   }
 
   return (

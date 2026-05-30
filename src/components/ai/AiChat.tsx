@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Sparkles, Loader2 } from "lucide-react";
+import { apiChat, checkApiHealth } from "../../api/client";
 import { chatWithAi, type AiMessage } from "../../services/aiService";
 
 const QUICK_PROMPTS = [
@@ -40,7 +41,8 @@ export function AiChat() {
     setLoading(true);
 
     try {
-      const reply = await chatWithAi(text);
+      const useApi = await checkApiHealth();
+      const reply = useApi ? await apiChat(text) : await chatWithAi(text);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: reply, timestamp: new Date() },

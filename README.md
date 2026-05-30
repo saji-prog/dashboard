@@ -57,17 +57,38 @@ npm run build
 npm run preview
 ```
 
-## Integrasi API nyata
+## Backend (NestJS)
 
-Saat ini menggunakan data mock. Untuk produksi:
-1. Ganti `src/data/mockData.ts` dengan fetch ke API sensor/IoT
-2. Hubungkan `chatWithAi` di `src/services/aiService.ts` ke OpenAI/Claude API
-3. Tambahkan upload gambar untuk diagnosis berbasis visi komputer
+Folder `backend/` — REST API + database SQLite.
+
+```powershell
+# Terminal 1 — backend
+cd backend
+.\setup.ps1
+npm run start:dev
+
+# Terminal 2 — frontend
+cd ..
+.\dev.ps1
+```
+
+Frontend otomatis proxy `/api` → `http://localhost:3000`. Badge kanan atas:
+- **Backend API** — terhubung ke NestJS
+- **Mock (offline)** — backend mati, pakai data lokal
+
+Detail API: lihat [backend/README.md](backend/README.md)
+
+## Struktur proyek
+
+```
+dashboard/
+├── src/           # Frontend React
+├── backend/       # NestJS + Prisma + SQLite
+├── dev.ps1        # Jalankan frontend
+└── backend/setup.ps1
+```
 
 ## Tech stack
 
-- React 19 + TypeScript
-- Vite 6
-- Tailwind CSS 4
-- Recharts
-- Lucide React
+**Frontend:** React 19, Vite, Tailwind, Recharts  
+**Backend:** NestJS, Prisma, SQLite (dev) / PostgreSQL (produksi nanti)

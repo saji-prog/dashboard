@@ -1,6 +1,6 @@
 import { AlertTriangle, Bug, CloudRain, Droplets, Zap } from "lucide-react";
 import type { Alert } from "../data/mockData";
-import { fields } from "../data/mockData";
+import { useFarm } from "../context/FarmContext";
 
 const typeIcons = {
   pest: Bug,
@@ -22,6 +22,7 @@ interface AlertsListProps {
 }
 
 export function AlertsList({ alerts, compact }: AlertsListProps) {
+  const { fields } = useFarm();
   return (
     <div className="space-y-2">
       {alerts.map((alert) => {

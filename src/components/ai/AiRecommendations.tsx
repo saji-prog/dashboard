@@ -1,6 +1,10 @@
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Sparkles, AlertCircle, Info, AlertTriangle } from "lucide-react";
-import { generateRecommendations } from "../../services/aiService";
+import { apiRecommendations, checkApiHealth } from "../../api/client";
+import {
+  generateRecommendations,
+  type AiRecommendation,
+} from "../../services/aiService";
 
 const priorityConfig = {
   high: {
@@ -21,7 +25,21 @@ const priorityConfig = {
 };
 
 export function AiRecommendations() {
-  const recommendations = useMemo(() => generateRecommendations(), []);
+  const [recommendations, setRecommendations] = useState<AiRecommendation[]>(
+    () => generateRecommendations()
+  );
+
+  useEffect(() => {
+    checkApiHealth().then(async (ok) => {
+      if (ok) {
+        try {
+          setRecommendations(await apiRecommendations());
+        } catch {
+          setRecommendations(generateRecommendations());
+        }
+      }
+    });
+  }, []);
 
   return (
     <div className="rounded-xl border border-white/5 bg-[#1a231c] p-5">

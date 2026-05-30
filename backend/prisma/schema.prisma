@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum FieldStatus {
+  optimal
+  warning
+  critical
+}
+
+enum AlertType {
+  pest
+  drought
+  disease
+  weather
+  irrigation
+}
+
+enum AlertSeverity {
+  low
+  medium
+  high
+}
+
+model Farm {
+  id        String   @id @default(cuid())
+  name      String
+  areaHa    Float
+  createdAt DateTime @default(now())
+  fields    Field[]
+}
+
+model Field {
+  id           String      @id
+  farmId       String
+  farm         Farm        @relation(fields: [farmId], references: [id], onDelete: Cascade)
+  name         String
+  crop         String
+  areaHa       Float
+  health       Int
+  soilMoisture Int
+  soilPh       Float
+  temperature  Int
+  humidity     Int
+  ndvi         Float
+  status       FieldStatus
+  alerts       Alert[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Alert {
+  id        String        @id
+  fieldId   String
+  field     Field         @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  type      AlertType
+  severity  AlertSeverity
+  message   String
+  timeLabel String
+  createdAt DateTime      @default(now())
+}
+
+model SensorReading {
+  id        String   @id @default(cuid())
+  timeLabel String
+  moisture  Int
+  temp      Int
+  humidity  Int
+  createdAt DateTime @default(now())
+}
+
+model YieldForecast {
+  id        String @id @default(cuid())
+  day       String @unique
+  predicted Int
+  actual    Int?
+}
+
+model WeatherForecast {
+  id    String @id @default(cuid())
+  day   String @unique
+  icon  String
+  high  Int
+  low   Int
+  rain  Int
+}

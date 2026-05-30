@@ -1,5 +1,5 @@
 import { Cloud, CloudRain, Sun } from "lucide-react";
-import { weatherForecast } from "../data/mockData";
+import { useFarm } from "../context/FarmContext";
 
 const icons = {
   sun: Sun,
@@ -8,6 +8,7 @@ const icons = {
 };
 
 export function WeatherWidget() {
+  const { weatherForecast } = useFarm();
   return (
     <div className="rounded-xl border border-white/5 bg-[#1a231c] p-5">
       <h3 className="font-medium text-white">Prakiraan Cuaca</h3>

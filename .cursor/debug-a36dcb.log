@@ -1,0 +1,11 @@
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102643203}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"FarmContext.tsx:load","message":"apiUp result","data":{"apiUp":false},"timestamp":1780102643204}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"FarmContext.tsx:load","message":"apiUp result","data":{"apiUp":false},"timestamp":1780102643207}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102643206}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102644133}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102644135}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"FarmContext.tsx:load","message":"apiUp result","data":{"apiUp":false},"timestamp":1780102644135}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"FarmContext.tsx:load","message":"apiUp result","data":{"apiUp":false},"timestamp":1780102644134}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102646219}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102646228}
+{"sessionId":"a36dcb","hypothesisId":"H-A","location":"client.ts:checkApiHealth","message":"health check","data":{"url":"/api/health","ok":false,"status":500},"timestamp":1780102652493}

@@ -17,9 +17,10 @@ import { AlertsList } from "./components/AlertsList";
 import { AiChat } from "./components/ai/AiChat";
 import { AiDiagnosis } from "./components/ai/AiDiagnosis";
 import { AiRecommendations } from "./components/ai/AiRecommendations";
-import { fields, alerts } from "./data/mockData";
+import { useFarm } from "./context/FarmContext";
 
 function DashboardView() {
+  const { fields, alerts } = useFarm();
   const avgHealth = Math.round(
     fields.reduce((s, f) => s + f.health, 0) / fields.length
   );
@@ -106,6 +107,7 @@ function DashboardView() {
 }
 
 function FieldsView() {
+  const { fields } = useFarm();
   return (
     <div className="space-y-6">
       <div>
@@ -145,6 +147,7 @@ function FieldsView() {
 }
 
 function AlertsView() {
+  const { alerts } = useFarm();
   const highCount = alerts.filter((a) => a.severity === "high").length;
 
   return (
@@ -187,13 +190,30 @@ function AiView() {
 
 export default function App() {
   const [nav, setNav] = useState<NavItem>("dashboard");
+  const { alerts, dataSource, loading } = useFarm();
   const highAlerts = useMemo(
     () => alerts.filter((a) => a.severity === "high" || a.severity === "medium").length,
-    []
+    [alerts]
   );
 
   return (
     <div className="min-h-screen">
+      {loading && (
+        <div className="fixed top-2 right-2 z-50 rounded-lg bg-white/10 px-3 py-1 text-xs text-white/70">
+          Memuat data…
+        </div>
+      )}
+      {!loading && (
+        <div
+          className={`fixed top-2 right-2 z-50 rounded-lg px-3 py-1 text-xs ${
+            dataSource === "api"
+              ? "bg-agri-600/30 text-agri-300"
+              : "bg-amber-600/20 text-amber-300"
+          }`}
+        >
+          Data: {dataSource === "api" ? "Backend API" : "Mock (offline)"}
+        </div>
+      )}
       <Sidebar active={nav} onNavigate={setNav} alertCount={highAlerts} />
 
       <MobileNav active={nav} onNavigate={setNav} alertCount={highAlerts} />
