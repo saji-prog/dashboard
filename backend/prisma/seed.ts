@@ -26,7 +26,7 @@ async function main() {
       temperature: 29,
       humidity: 78,
       ndvi: 0.72,
-      status: 'optimal' as const,
+      status: 'optimal',
     },
     {
       id: 'f2',
@@ -39,7 +39,7 @@ async function main() {
       temperature: 31,
       humidity: 62,
       ndvi: 0.58,
-      status: 'warning' as const,
+      status: 'warning',
     },
     {
       id: 'f3',
@@ -52,7 +52,7 @@ async function main() {
       temperature: 33,
       humidity: 55,
       ndvi: 0.45,
-      status: 'critical' as const,
+      status: 'critical',
     },
     {
       id: 'f4',
@@ -65,7 +65,7 @@ async function main() {
       temperature: 28,
       humidity: 71,
       ndvi: 0.69,
-      status: 'optimal' as const,
+      status: 'optimal',
     },
   ];
 
@@ -79,8 +79,8 @@ async function main() {
     {
       id: 'a1',
       fieldId: 'f3',
-      type: 'drought' as const,
-      severity: 'high' as const,
+      type: 'drought',
+      severity: 'high',
       message:
         'Kelembaban tanah Blok C turun di bawah 40% — irigasi disarankan segera',
       timeLabel: '10 menit lalu',
@@ -88,24 +88,24 @@ async function main() {
     {
       id: 'a2',
       fieldId: 'f3',
-      type: 'pest' as const,
-      severity: 'medium' as const,
+      type: 'pest',
+      severity: 'medium',
       message: 'Indikasi thrips pada daun cabai terdeteksi sensor optik',
       timeLabel: '45 menit lalu',
     },
     {
       id: 'a3',
       fieldId: 'f2',
-      type: 'irrigation' as const,
-      severity: 'medium' as const,
+      type: 'irrigation',
+      severity: 'medium',
       message: 'Jadwal irigasi Blok B tertunda 2 jam — pompa standby',
       timeLabel: '1 jam lalu',
     },
     {
       id: 'a4',
       fieldId: 'f1',
-      type: 'weather' as const,
-      severity: 'low' as const,
+      type: 'weather',
+      severity: 'low',
       message: 'Hujan ringan diprediksi besok pagi (65% probabilitas)',
       timeLabel: '2 jam lalu',
     },

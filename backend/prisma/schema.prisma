@@ -7,25 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum FieldStatus {
-  optimal
-  warning
-  critical
-}
-
-enum AlertType {
-  pest
-  drought
-  disease
-  weather
-  irrigation
-}
-
-enum AlertSeverity {
-  low
-  medium
-  high
-}
 
 model Farm {
   id        String   @id @default(cuid())
@@ -48,7 +29,7 @@ model Field {
   temperature  Int
   humidity     Int
   ndvi         Float
-  status       FieldStatus
+  status       String
   alerts       Alert[]
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
@@ -58,8 +39,8 @@ model Alert {
   id        String        @id
   fieldId   String
   field     Field         @relation(fields: [fieldId], references: [id], onDelete: Cascade)
-  type      AlertType
-  severity  AlertSeverity
+  type      String
+  severity  String
   message   String
   timeLabel String
   createdAt DateTime      @default(now())

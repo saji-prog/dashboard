@@ -5,6 +5,7 @@ import { AlertsModule } from './alerts/alerts.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SensorsModule } from './sensors/sensors.module';
 import { AiModule } from './ai/ai.module';
+import { WeatherModule } from './weather/weather.module';
 import { HealthController } from './health/health.controller';
 
 @Module({
@@ -15,6 +16,7 @@ import { HealthController } from './health/health.controller';
     DashboardModule,
     SensorsModule,
     AiModule,
+    WeatherModule,
   ],
   controllers: [HealthController],
 })

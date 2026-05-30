@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { AlertSeverity, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+
+// AlertSeverity is now a plain string type since SQLite doesn't support enums
+type AlertSeverity = 'low' | 'medium' | 'high';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()

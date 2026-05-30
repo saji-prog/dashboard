@@ -1,5 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { AlertSeverity } from '@prisma/client';
+// AlertSeverity is now a plain string type since SQLite doesn't support enums
+type AlertSeverity = 'low' | 'medium' | 'high';
 import { AlertsService } from './alerts.service';
 
 @Controller('alerts')
